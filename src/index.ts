@@ -18,8 +18,8 @@ app.use(cookieParser());
 
 app.use("/api", globalRouter);
 
-app.listen(PORT, () => {
-  portConfig(Number(PORT));
-});
+// app.listen(PORT, () => {
+//   portConfig(Number(PORT));
+// });
 
 export default app;
