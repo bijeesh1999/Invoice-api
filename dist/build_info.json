@@ -1,0 +1,1 @@
+'{"deploy_time":"'$(date -u)'", "build_id":"'$RENDER_BUILD_ID'"}' 
