@@ -6,6 +6,7 @@ export const SignUp = async (userData: {
   name: string;
   email: string;
   phone:string;
+  discount:string;
 }) => {
   console.log({ userData });
 
@@ -13,6 +14,7 @@ export const SignUp = async (userData: {
     name: userData.name,
     email: userData.email,
     phone:userData?.phone,
+    discount:userData?.discount
   });
 
   return newUser;
