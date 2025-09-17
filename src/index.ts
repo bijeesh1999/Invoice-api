@@ -5,7 +5,6 @@ import globalRouter from "./app";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./config/db";
 import cors from "cors"
-import ServerlessHttp from "serverless-http";
 dotenv.config();
 
 const PORT = process.env.PORT ||3000;
@@ -18,8 +17,6 @@ app.use(cookieParser());
 
 
 app.use("/api", globalRouter);
-
-export const handler = ServerlessHttp(app);
 
 app.listen(PORT, () => {
   portConfig(Number(PORT));
