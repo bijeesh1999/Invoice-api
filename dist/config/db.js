@@ -6,9 +6,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectDB = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 // Get the connection string from environment variables for security.
 // Use a fallback URL for local development if the variable is not set.
-const MONGO_URL = process.env.MONGO_URL || "mongodb+srv://bijeeshbstackup:bijeeshb1999@cluster0.8roueeq.mongodb.net/Invoice";
+const MONGO_URL = process.env.MONGO_URL || "";
+console.log({ MONGO_URL: MONGO_URL });
 const connectDB = async () => {
     try {
         await mongoose_1.default.connect(MONGO_URL, {

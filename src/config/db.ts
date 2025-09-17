@@ -2,11 +2,14 @@
 
 import mongoose from 'mongoose';
 import dotenv from "dotenv"
+dotenv.config();
 
 
 // Get the connection string from environment variables for security.
 // Use a fallback URL for local development if the variable is not set.
-const MONGO_URL = process.env.MONGO_URL || "mongodb+srv://bijeeshbstackup:bijeeshb1999@cluster0.8roueeq.mongodb.net/Invoice";
+const MONGO_URL = process.env.MONGO_URL|| ""
+
+console.log({MONGO_URL:MONGO_URL})
 
 export const connectDB = async (): Promise<void> => {
     try {
