@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "prestart": "npm run build"
+    "prestart": "npm run build && echo '{\"deploy_time\":\"'$(date -u)'\", \"build_id\":\"'$RENDER_BUILD_ID'\"}' > dist/build_info.json"
   },
   "keywords": [],
   "author": "",
