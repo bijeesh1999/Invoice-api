@@ -11,6 +11,7 @@ const SignUp = async (userData) => {
         name: userData.name,
         email: userData.email,
         phone: userData?.phone,
+        discount: userData?.discount
     });
     return newUser;
 };

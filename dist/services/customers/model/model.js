@@ -38,6 +38,7 @@ const userSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
+    discount: { type: String, required: true },
 });
 const Customer = mongoose_1.default.model('Customer', userSchema);
 exports.default = Customer;
