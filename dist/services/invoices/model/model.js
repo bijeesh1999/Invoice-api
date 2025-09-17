@@ -43,6 +43,7 @@ const invoiceSchema = new mongoose_1.Schema({
     discountedPercent: { type: Number },
     discountedPrice: { type: Number },
     quantity: { type: Number },
+    isDeleted: { type: Boolean, default: false },
 });
 const Invoice = mongoose_1.default.model("Invoice", invoiceSchema);
 exports.default = Invoice;

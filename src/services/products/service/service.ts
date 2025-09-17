@@ -1,26 +1,24 @@
 import Product from "../model/model";
 import mongoose from "mongoose";
 
-
 export const CreateProduct = async (product: {
   name: string;
-  price:string;
+  price: string;
 }) => {
   console.log({ product });
 
   const newUser = await Product.create({
     name: product.name,
-    price: product.price
+    price: product.price,
   });
 
   return newUser;
 };
 
-
 export const findAllProducts = async () => {
   try {
     // Correctly call the Mongoose 'find()' method to get all users.
-    const products = await Product.find();
+    const products = await Product.find({ isDeleted: false });
 
     // Return the array of user documents.
     return products;
@@ -30,4 +28,21 @@ export const findAllProducts = async () => {
     // Throw a new error to be handled by the controller.
     throw new Error("Failed to retrieve users: " + error.message);
   }
+};
+
+export const deleteOne = async (id: string) => {
+  const updatedUser = await Product.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        isDeleted: true,
+      },
+    },
+    {
+      new: true, // This option returns the updated document
+    }
+  );
+
+  // Return the updated user document, or null if the user was not found
+  return { customer: updatedUser };
 };

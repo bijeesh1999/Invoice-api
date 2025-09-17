@@ -1,14 +1,13 @@
-
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: true },
   discount: { type: String, required: true },
-
+  isDeleted: { type: Boolean, default: false },
 });
 
-const Customer = mongoose.model('Customer', userSchema);
+const Customer = mongoose.model("Customer", userSchema);
 
 export default Customer;

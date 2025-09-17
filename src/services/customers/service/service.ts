@@ -75,7 +75,7 @@ export const findUserByToken = async (token: string) => {
 export const findAllUsers = async () => {
   try {
     // Correctly call the Mongoose 'find()' method to get all users.
-    const users = await Customer.find();
+    const users = await Customer.find({ isDeleted: false });
 
     // Return the array of user documents.
     return users;
@@ -110,4 +110,23 @@ export const updateUserToken = async ({
 
   // Return the updated user document, or null if the user was not found
   // return { token: updatedUser?.authentication?.token };
+};
+
+
+
+export const deleteOne = async (id:string) => {
+  const updatedUser = await Customer.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        "isDeleted": true,
+      },
+    },
+    {
+      new: true, // This option returns the updated document
+    }
+  );
+
+  // Return the updated user document, or null if the user was not found
+  return { customer: updatedUser };
 };

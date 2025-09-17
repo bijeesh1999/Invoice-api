@@ -1,6 +1,7 @@
 import { Request, response, Response } from "express";
 import {
   CreateInvoiceData,
+  deleteOne,
   findAll
 } from "../service/service";
 
@@ -41,6 +42,21 @@ export const findAllInvoice = async (req: AuthenticatedRequest, res: Response) =
     return res.status(200).json({
       invoices,
       message: "find All Invoices success",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteInvoice = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const {id} = req.params;
+
+    const deleteResponse = await deleteOne(id)
+
+    return res.status(200).json({
+      response:deleteResponse,
+      message: "Invoice deleted",
     });
   } catch (error) {
     console.log(error);

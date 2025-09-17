@@ -1,5 +1,6 @@
 import { Request, response, Response } from "express";
 import {
+  deleteOne,
   findAllUsers,
   SignUp,
 } from "../service/service";
@@ -43,6 +44,22 @@ export const findAll = async (req: AuthenticatedRequest, res: Response) => {
       users,
       user,
       message: "find All Users",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const deleteCustomer = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const {id} = req.params;
+
+    const deleteResponse = await deleteOne(id)
+
+    return res.status(200).json({
+      response:deleteResponse,
+      message: "User deleted",
     });
   } catch (error) {
     console.log(error);

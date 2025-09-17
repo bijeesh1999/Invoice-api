@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAll = exports.userSignUp = void 0;
+exports.deleteCustomer = exports.findAll = exports.userSignUp = void 0;
 const service_1 = require("../service/service");
 const userSignUp = async (req, res) => {
     try {
@@ -40,3 +40,17 @@ const findAll = async (req, res) => {
     }
 };
 exports.findAll = findAll;
+const deleteCustomer = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteResponse = await (0, service_1.deleteOne)(id);
+        return res.status(200).json({
+            response: deleteResponse,
+            message: "User deleted",
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+exports.deleteCustomer = deleteCustomer;

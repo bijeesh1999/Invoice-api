@@ -1,6 +1,7 @@
 import { Request, response, Response } from "express";
 import {
-  findAllProducts,CreateProduct
+  findAllProducts,CreateProduct,
+  deleteOne
 } from "../service/service";
 
 interface AuthenticatedRequest extends Request {
@@ -40,6 +41,21 @@ export const findAllProduct = async (req: AuthenticatedRequest, res: Response) =
     return res.status(200).json({
       products,
       message: "find All Products success",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteProduct = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const {id} = req.params;
+
+    const deleteResponse = await deleteOne(id)
+
+    return res.status(200).json({
+      response:deleteResponse,
+      message: "Product deleted",
     });
   } catch (error) {
     console.log(error);

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAllInvoice = exports.createInvoice = void 0;
+exports.deleteInvoice = exports.findAllInvoice = exports.createInvoice = void 0;
 const service_1 = require("../service/service");
 const createInvoice = async (req, res) => {
     try {
@@ -38,3 +38,17 @@ const findAllInvoice = async (req, res) => {
     }
 };
 exports.findAllInvoice = findAllInvoice;
+const deleteInvoice = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteResponse = await (0, service_1.deleteOne)(id);
+        return res.status(200).json({
+            response: deleteResponse,
+            message: "Invoice deleted",
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+exports.deleteInvoice = deleteInvoice;

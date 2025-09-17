@@ -39,6 +39,7 @@ const userSchema = new mongoose_1.Schema({
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
     discount: { type: String, required: true },
+    isDeleted: { type: Boolean, default: false },
 });
-const Customer = mongoose_1.default.model('Customer', userSchema);
+const Customer = mongoose_1.default.model("Customer", userSchema);
 exports.default = Customer;

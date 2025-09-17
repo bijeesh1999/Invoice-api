@@ -38,6 +38,7 @@ const productSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     price: { type: String, required: true },
     description: { type: String },
+    isDeleted: { type: Boolean, default: false },
 });
 const Product = mongoose_1.default.model("Product", productSchema);
 exports.default = Product;

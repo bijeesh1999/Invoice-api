@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAll = exports.CreateInvoiceData = void 0;
+exports.deleteOne = exports.findAll = exports.CreateInvoiceData = void 0;
 const model_1 = __importDefault(require("../model/model"));
 const CreateInvoiceData = async (invoice) => {
     console.log({ invoice });
@@ -14,7 +14,7 @@ exports.CreateInvoiceData = CreateInvoiceData;
 const findAll = async () => {
     try {
         // Correctly call the Mongoose 'find()' method to get all users.
-        const invoices = await model_1.default.find();
+        const invoices = await model_1.default.find({ isDeleted: false });
         // Return the array of user documents.
         return invoices;
     }
@@ -26,3 +26,15 @@ const findAll = async () => {
     }
 };
 exports.findAll = findAll;
+const deleteOne = async (id) => {
+    const updatedUser = await model_1.default.findByIdAndUpdate(id, {
+        $set: {
+            "isDeleted": true,
+        },
+    }, {
+        new: true, // This option returns the updated document
+    });
+    // Return the updated user document, or null if the user was not found
+    return { customer: updatedUser };
+};
+exports.deleteOne = deleteOne;
